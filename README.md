@@ -10,7 +10,7 @@ https://www.amazon.com/gp/product/B001APJ0OG
 RTC: (from hackaday project)<br>
 https://www.adafruit.com/product/2922
 
-Adafruit Feather:<br>
+Adafruit Feather (Huzzah):<br>
 https://www.adafruit.com/product/2821
 
 # Capacitive Touch
