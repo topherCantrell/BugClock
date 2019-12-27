@@ -4,10 +4,10 @@ https://hackaday.com/2019/11/21/circuitpython-sculpture-clock-adds-character-to-
 
 # Parts
 
-Brass Rods: (from hackaday project)<br>
+Brass Rods: (from the hackaday project)<br>
 https://www.amazon.com/gp/product/B001APJ0OG
 
-RTC: (from hackaday project)<br>
+RTC: (from the hackaday project)<br>
 https://www.adafruit.com/product/2922
 
 Adafruit Feather (Huzzah):<br>
