@@ -18,3 +18,8 @@ https://www.adafruit.com/product/2821
 https://learn.adafruit.com/sensor-plotting-with-mu-and-circuitpython/capacitive-touch
 
 https://forums.adafruit.com/viewtopic.php?f=8&t=91655
+
+# RTC
+
+https://www.nxp.com/docs/en/data-sheet/PCF8523.pdf
+
