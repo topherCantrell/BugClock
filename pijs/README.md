@@ -27,7 +27,9 @@ npm install i2c-bus
 
 ## Talking to the display
 
-https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf
+Display backpack from Adafruit: https://www.adafruit.com/product/877
+
+Driver data sheet: https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf
 
 ```js
 const i2c = require('i2c-bus')
