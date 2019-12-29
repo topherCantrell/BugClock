@@ -31,7 +31,6 @@ npm install i2c-bus
 https://www.holtek.com/documents/10179/116711/HT16K33v120.pdf
 
 ```js
-
 const i2c = require('i2c-bus')
 
 bus = i2c.openSync(1)
@@ -49,5 +48,6 @@ data = Buffer.from([
 	0x6F,0  // '9'
 ]);
 
+// Show "20:19" on the display
 bus.writeI2cBlockSync(0x70,0,10,data)
 ```
