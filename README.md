@@ -38,3 +38,7 @@ HT16K33 I2C address: 0x70
 
 Temporary wires for testing:<br>
 ![](art/test.jpg)
+
+```
+i2cdetect -y 1
+```
