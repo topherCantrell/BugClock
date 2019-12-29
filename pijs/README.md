@@ -23,7 +23,6 @@ https://www.npmjs.com/package/i2c-bus
 npm install i2c-bus
 
 # Run "sudo raspi-config" ... be sure I2C hardware is enabled 
-
 ```
 
 ## Talking to the display
