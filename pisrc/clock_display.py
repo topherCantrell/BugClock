@@ -43,7 +43,7 @@ class ClockDisplay:
         # The JS block writer needs the 0 instead of 15
         self._bus.write_block_data(0x70, 15, [a,0, b,0, colon,0, c,0, d,0])        
     
-    def set_time(self,hours,minutes,ampm):
+    def set_time(self,hours,minutes,ampm=True):
         
         pm_led = False
         
@@ -69,8 +69,3 @@ class ClockDisplay:
             
         self.set_digits(raw_ha,raw_hb,2,raw_ma,raw_mb)
         
-if __name__ == '__main__':
-    
-    clock = ClockDisplay()
-    
-    #clock.set_time(13,27,True)
