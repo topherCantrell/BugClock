@@ -12,8 +12,8 @@ class ClockDisplay:
 #     
 # Center colon is bit 1
 #                       
-#                                 A    B  colon  C    D           
-#                                 |    |    |    |    |
+#                             ?   A    B  colon  C    D           
+#                             |   |    |    |    |    |
 # bus.write_block_data(0x70, 15, [0,0, 0,0, 0,0, 0,0, 0,0])
 
     DIGITS = [
@@ -31,23 +31,46 @@ class ClockDisplay:
     
     def __init__(self,address=0x70):
         self._bus = smbus.SMBus(1)
-        self._address = address;              
-        self._bus.write_block_data(self._address, 0x21, [])
-        self._bus.write_block_data(self._address, 0xEF, [])
-        self._bus.write_block_data(self._address, 0x81, [])        
+        self._address = address           
+        
+        self._bus.write_byte(0x70,0x21)
+        self._bus.write_byte(0x70,0xEF)
+        self._bus.write_byte(0x70,0x81)        
         self.set_digits(0,0, 0, 0,0)
         
     def set_digits(self,a,b,colon,c,d):
-        self._bus.write_block_data(0x70, 15, [a,0, b,0, colon,0, c,0, d,0])
+        # TODO: still not sure why I have to start writing at 15 instead of 0
+        # The JS block writer needs the 0 instead of 15
+        self._bus.write_block_data(0x70, 15, [a,0, b,0, colon,0, c,0, d,0])        
     
     def set_time(self,hours,minutes,ampm):
-        hours_a = int(hours/10)
-        hours_b = hours - hours_a
-        mins_a = int(minutes/10)
-        min_b = minutes - mins_a
         
-
-clock = ClockDisplay()
-#clock.set_digits(clock.DIGITS[0],clock.DIGITS[1],2,clock.DIGITS[2],clock.DIGITS[3])    
-#clock.set_digits(clock.DIGITS[4],clock.DIGITS[5],2,clock.DIGITS[6],clock.DIGITS[7])
-#clock.set_digits(clock.DIGITS[8],clock.DIGITS[9],2,clock.DIGITS[8],clock.DIGITS[9])
+        pm_led = False
+        
+        if ampm and hours>12:
+            pm_led = True
+            hours -= 12
+        
+        hours_a = int(hours/10)
+        hours_b = hours - hours_a*10
+        mins_a = int(minutes/10)
+        mins_b = minutes - mins_a*10
+        
+        raw_ha = ClockDisplay.DIGITS[hours_a]
+        raw_hb = ClockDisplay.DIGITS[hours_b]
+        raw_ma = ClockDisplay.DIGITS[mins_a]
+        raw_mb = ClockDisplay.DIGITS[mins_b]
+        
+        if ampm and hours_a==0:
+            raw_ha = 0
+            
+        if pm_led:
+            raw_mb |= 128
+            
+        self.set_digits(raw_ha,raw_hb,2,raw_ma,raw_mb)
+        
+if __name__ == '__main__':
+    
+    clock = ClockDisplay()
+    
+    #clock.set_time(13,27,True)
