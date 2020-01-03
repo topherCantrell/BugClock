@@ -10,17 +10,11 @@ https://www.amazon.com/gp/product/B001APJ0OG
 RTC: (from the hackaday project)<br>
 https://www.adafruit.com/product/2922
 
-Adafruit Feather (Huzzah):<br>
-https://www.adafruit.com/product/2821
+Adafruit ItsyBitsy M0 Express: (from the hackaday project)<br>
+https://www.adafruit.com/product/3727
 
-Display Backpack:<br>
+Display Backpack: (from the hackaday project)<br>
 https://www.adafruit.com/product/877
-
-# Capacitive Touch
-
-https://learn.adafruit.com/sensor-plotting-with-mu-and-circuitpython/capacitive-touch
-
-https://forums.adafruit.com/viewtopic.php?f=8&t=91655
 
 # RTC
 
