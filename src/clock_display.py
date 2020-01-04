@@ -1,4 +1,3 @@
-import smbus
 
 class ClockDisplay:
    
@@ -12,9 +11,9 @@ class ClockDisplay:
 #     
 # Center colon is bit 1
 #                       
-#                             ?   A    B  colon  C    D           
-#                             |   |    |    |    |    |
-# bus.write_block_data(0x70, 15, [0,0, 0,0, 0,0, 0,0, 0,0])
+#                                A    B  colon  C    D           
+#                            |   |    |    |    |    |
+# bus.write_block_data(0x70, 0, [0,0, 0,0, 0,0, 0,0, 0,0])
 
     DIGITS = [
         0x3F, # 0
@@ -29,20 +28,17 @@ class ClockDisplay:
         0x6F, # 9
     ]
     
-    def __init__(self,address=0x70):
-        self._bus = smbus.SMBus(1)
-        self._address = address           
-        
-        self._bus.write_byte(0x70,0x21)
-        self._bus.write_byte(0x70,0xEF)
-        self._bus.write_byte(0x70,0x81)        
+    def __init__(self,i2c,address=0x70):
+        self._i2c = i2c        
+        self._address = address
+        self._i2c.write(address,0x21)
+        self._i2c.write(address,0xEF)
+        self._i2c.write(address,0x81)     
         self.set_digits(0,0, 0, 0,0)
         
-    def set_digits(self,a,b,colon,c,d):
-        # TODO: still not sure why I have to start writing at 15 instead of 0
-        # The JS block writer needs the 0 instead of 15
-        self._bus.write_block_data(0x70, 15, [a,0, b,0, colon,0, c,0, d,0])        
-    
+    def set_digits(self,a,b,colon,c,d):        
+        self._i2c.write_data(self._address,0,bytes([a,0, b,0, colon,0, c,0, d,0]))
+            
     def set_time(self,hours,minutes,ampm=True):
         
         pm_led = False
